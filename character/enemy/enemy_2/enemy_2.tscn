@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=3 uid="uid://byy1jsnq5s7g"]
+
+[ext_resource type="PackedScene" uid="uid://rypvc2885l3d" path="res://character/enemy/enemy.tscn" id="1_bqxk3"]
+[ext_resource type="Script" uid="uid://qtjc3h8e0qln" path="res://character/enemy/enemy_2/enemy_2.gd" id="2_yhlm5"]
+[ext_resource type="Texture2D" uid="uid://csb74yhr1oik3" path="res://images/player.png" id="3_w8knu"]
+[ext_resource type="Shape2D" uid="uid://b8p5pdjuutd60" path="res://character/enemy/enemy_2/new_capsule_shape_2d.tres" id="4_nwc2m"]
+
+[node name="Enemy2" instance=ExtResource("1_bqxk3")]
+y_sort_enabled = false
+collision_mask = 1
+script = ExtResource("2_yhlm5")
+repelled = false
+default_velocity = 50.0
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="0"]
+position = Vector2(1.66893e-06, 0)
+scale = Vector2(1.25, 0.5)
+texture = ExtResource("3_w8knu")
+
+[node name="AttackTimer" type="Timer" parent="." index="1"]
+unique_name_in_owner = true
+one_shot = true
+autostart = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
+rotation = 1.5708
+shape = ExtResource("4_nwc2m")
+
+[node name="Control" parent="." index="3"]
+offset_top = -14.0
+offset_bottom = -14.0
+
+[node name="HpBar" parent="Control" index="0"]
+offset_left = -37.0
+offset_top = -4.0
+offset_right = 37.0
+offset_bottom = 4.0
+pivot_offset = Vector2(10, 0)
+
+[node name="Area2D" type="Area2D" parent="." index="4"]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+rotation = 1.5708
+shape = ExtResource("4_nwc2m")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

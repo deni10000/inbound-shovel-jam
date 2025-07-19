@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://c87vx57hldk1p"]
+
+[ext_resource type="Script" uid="uid://8q2rdaep30fh" path="res://ui/upgrade_card/upgrade_card.gd" id="1_q767i"]
+[ext_resource type="Texture2D" uid="uid://d2j0h3eukfbg" path="res://images/Heart.png" id="2_r1qoy"]
+
+[node name="UpgradeCard" type="PanelContainer"]
+custom_minimum_size = Vector2(130, 0)
+offset_right = 104.0
+offset_bottom = 130.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+script = ExtResource("1_q767i")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("2_r1qoy")
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 8
+text = "agaggag"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

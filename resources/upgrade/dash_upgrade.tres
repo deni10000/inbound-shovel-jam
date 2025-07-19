@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="DashUpgrade" load_steps=4 format=3 uid="uid://c3l1q2o0xjgt2"]
+
+[ext_resource type="Script" uid="uid://lxb31vka87x1" path="res://upgrade/dash_upgrade.gd" id="1_qb501"]
+[ext_resource type="Texture2D" uid="uid://bcpf5fsrwsfnk" path="res://images/Icons_RPG.png" id="2_mivvg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gkkv0"]
+atlas = ExtResource("2_mivvg")
+region = Rect2(192, 80, 16, 16)
+
+[resource]
+script = ExtResource("1_qb501")
+add_velocity = 100
+texture = SubResource("AtlasTexture_gkkv0")
+description = "+ dash distance"
+metadata/_custom_type_script = "uid://lxb31vka87x1"

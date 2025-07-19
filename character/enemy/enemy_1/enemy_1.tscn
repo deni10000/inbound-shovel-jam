@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://dltxa7euiq46q"]
+
+[ext_resource type="PackedScene" uid="uid://rypvc2885l3d" path="res://character/enemy/enemy.tscn" id="1_tmha5"]
+[ext_resource type="Script" uid="uid://b0grr2sqsqfag" path="res://character/enemy/enemy_1/enemy_1.gd" id="2_cwm7i"]
+[ext_resource type="Texture2D" uid="uid://csb74yhr1oik3" path="res://images/player.png" id="3_8bp40"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cwm7i"]
+radius = 8.0
+height = 16.0
+
+[node name="Enemy1" instance=ExtResource("1_tmha5")]
+script = ExtResource("2_cwm7i")
+default_hp = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="0"]
+position = Vector2(0, -8)
+texture = ExtResource("3_8bp40")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+shape = SubResource("CapsuleShape2D_cwm7i")
+
+[node name="Control" parent="." index="2"]
+offset_top = -31.0
+offset_bottom = -31.0

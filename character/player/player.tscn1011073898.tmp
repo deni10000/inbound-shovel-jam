@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://bg4y0owujmc5q"]
+
+[ext_resource type="PackedScene" uid="uid://dsv5mtfajcwb0" path="res://character/character.tscn" id="1_4x1ah"]
+[ext_resource type="Script" uid="uid://dwn1vndeocn1e" path="res://character/player/player.gd" id="2_vnk41"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vnk41"]
+radius = 8.0
+height = 32.0
+
+[node name="Player" instance=ExtResource("1_4x1ah")]
+script = ExtResource("2_vnk41")
+default_velocity = null
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
+shape = SubResource("CapsuleShape2D_vnk41")
+
+[node name="Attack" type="Node2D" parent="." index="1"]
+
+[node name="AttackArea" type="Area2D" parent="Attack" index="0"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Attack/AttackArea" index="0"]

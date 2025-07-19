@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://dsv5mtfajcwb0"]
+
+[ext_resource type="Script" uid="uid://0jj0nd3dyell" path="res://character/character.gd" id="1_k3002"]
+[ext_resource type="PackedScene" uid="uid://bkox6trr4oj8i" path="res://ui/hp_bar/hp_bar.tscn" id="2_1l1n4"]
+
+[node name="Character" type="CharacterBody2D"]
+y_sort_enabled = true
+motion_mode = 1
+up_direction = Vector2(1, 0)
+script = ExtResource("1_k3002")
+default_hp = 3
+
+[node name="Control" type="Control" parent="."]
+z_index = 100
+layout_mode = 3
+anchors_preset = 0
+
+[node name="HpBar" parent="Control" instance=ExtResource("2_1l1n4")]
+unique_name_in_owner = true
+layout_mode = 1
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 20.0
+offset_bottom = 0.0

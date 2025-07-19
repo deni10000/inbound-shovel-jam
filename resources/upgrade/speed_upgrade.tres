@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="SpeedUpgrade" load_steps=4 format=3 uid="uid://bv0j08pcb7lkh"]
+
+[ext_resource type="Script" uid="uid://dmarx0lxlyk3t" path="res://upgrade/speed_upgrade.gd" id="1_gltbq"]
+[ext_resource type="Texture2D" uid="uid://bcpf5fsrwsfnk" path="res://images/Icons_RPG.png" id="2_bgffa"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sq87g"]
+atlas = ExtResource("2_bgffa")
+region = Rect2(96, 80, 16, 16)
+
+[resource]
+script = ExtResource("1_gltbq")
+speed = 10.0
+texture = SubResource("AtlasTexture_sq87g")
+description = "+ speed"
+metadata/_custom_type_script = "uid://dmarx0lxlyk3t"

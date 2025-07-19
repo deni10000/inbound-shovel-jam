@@ -1,0 +1,129 @@
+[gd_scene load_steps=9 format=3 uid="uid://bg4y0owujmc5q"]
+
+[ext_resource type="PackedScene" uid="uid://dsv5mtfajcwb0" path="res://character/character.tscn" id="1_4x1ah"]
+[ext_resource type="Script" uid="uid://dwn1vndeocn1e" path="res://character/player/player.gd" id="2_vnk41"]
+[ext_resource type="Texture2D" uid="uid://w0fs0b200eu3" path="res://character/player/sword_texture.tres" id="3_eu8pa"]
+[ext_resource type="Texture2D" uid="uid://dss4ue5dxp2kh" path="res://images/Sprite-0002__kopia.png" id="3_g20gq"]
+[ext_resource type="PackedScene" uid="uid://c84ak8mlgoeis" path="res://component/parry_component/parry_component.tscn" id="4_wu8e1"]
+[ext_resource type="Shape2D" uid="uid://cruhec725kmhx" path="res://character/player/sword_shape.tres" id="5_noxpy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_noxpy"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vnk41"]
+radius = 8.0
+height = 16.0
+
+[node name="Player" instance=ExtResource("1_4x1ah")]
+collision_mask = 9
+script = ExtResource("2_vnk41")
+default_hp = 10000
+default_velocity = 300.0
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="0"]
+unique_name_in_owner = true
+texture_repeat = 1
+material = SubResource("ShaderMaterial_noxpy")
+texture = ExtResource("3_g20gq")
+offset = Vector2(0, -7)
+region_rect = Rect2(-1, -1, 20, 38)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+position = Vector2(0, 3)
+shape = SubResource("CapsuleShape2D_vnk41")
+
+[node name="AttackArea" type="Area2D" parent="." index="2"]
+unique_name_in_owner = true
+visible = false
+y_sort_enabled = true
+collision_mask = 9
+
+[node name="NinePatchRect" type="NinePatchRect" parent="AttackArea" index="0" groups=["SwordRect"]]
+unique_name_in_owner = true
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -2.0
+offset_top = -41.0
+offset_right = 3.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_eu8pa")
+patch_margin_left = 1
+patch_margin_top = 4
+patch_margin_right = 1
+patch_margin_bottom = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea" index="1"]
+unique_name_in_owner = true
+position = Vector2(0.5, -26)
+shape = ExtResource("5_noxpy")
+
+[node name="Sprite2D" type="Sprite2D" parent="AttackArea" index="2"]
+visible = false
+position = Vector2(0, -21)
+texture = ExtResource("3_eu8pa")
+
+[node name="ParryComponent" parent="." index="3" node_paths=PackedStringArray("collision_shape") instance=ExtResource("4_wu8e1")]
+unique_name_in_owner = true
+visible = false
+y_sort_enabled = true
+rotation = -1.52367
+monitorable = false
+collision_shape = NodePath("CollisionShape2D2")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="ParryComponent" index="0"]
+unique_name_in_owner = true
+position = Vector2(-2, -11.5)
+rotation = -1.5708
+shape = ExtResource("5_noxpy")
+
+[node name="Sprite2D" type="Sprite2D" parent="ParryComponent" index="1"]
+visible = false
+position = Vector2(0, -13)
+rotation = -1.5708
+texture = ExtResource("3_eu8pa")
+
+[node name="Node2D" type="Node2D" parent="ParryComponent" index="2"]
+position = Vector2(0, -11)
+rotation = -1.5708
+
+[node name="NinePatchRect2" type="NinePatchRect" parent="ParryComponent/Node2D" index="0" groups=["SwordRect"]]
+unique_name_in_owner = true
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -2.5
+offset_top = -17.5
+offset_right = 2.5
+offset_bottom = 17.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_eu8pa")
+patch_margin_left = 1
+patch_margin_top = 4
+patch_margin_right = 1
+patch_margin_bottom = 6
+
+[node name="Camera2D" type="Camera2D" parent="." index="4"]
+limit_left = -32
+limit_top = -80
+limit_right = 992
+limit_bottom = 576
+
+[node name="Control" parent="." index="5"]
+offset_top = -37.0
+offset_bottom = -37.0
+
+[node name="HpBar" parent="Control" index="0"]
+offset_left = -43.5
+offset_top = -4.0
+offset_right = 43.5
+offset_bottom = 4.0
+pivot_offset = Vector2(43.5, 4)
+editor_max_hp = 7
+visible_on_full_hp = true

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="SwordUpgrade" load_steps=4 format=3 uid="uid://2eeforh3m6p0"]
+
+[ext_resource type="Script" uid="uid://c0eveyixcmdbt" path="res://upgrade/sword_upgrade.gd" id="1_yxenj"]
+[ext_resource type="Texture2D" uid="uid://bcpf5fsrwsfnk" path="res://images/Icons_RPG.png" id="2_xkiq2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dsio8"]
+atlas = ExtResource("2_xkiq2")
+region = Rect2(0, 0, 16, 16)
+
+[resource]
+script = ExtResource("1_yxenj")
+dop = 10
+texture = SubResource("AtlasTexture_dsio8")
+description = "+ sword length"
+metadata/_custom_type_script = "uid://c0eveyixcmdbt"

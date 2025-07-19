@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://byy1jsnq5s7g"]
+
+[ext_resource type="PackedScene" uid="uid://rypvc2885l3d" path="res://character/enemy/enemy.tscn" id="1_bqxk3"]
+[ext_resource type="Script" uid="uid://qtjc3h8e0qln" path="res://character/enemy/enemy_2/enemy_2.gd" id="2_yhlm5"]
+[ext_resource type="Texture2D" uid="uid://csb74yhr1oik3" path="res://images/player.png" id="3_w8knu"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yhlm5"]
+radius = 8.0
+height = 23.0
+
+[node name="Enemy2" instance=ExtResource("1_bqxk3")]
+y_sort_enabled = false
+script = ExtResource("2_yhlm5")
+repelled = false
+default_velocity = 50.0
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="0"]
+position = Vector2(1.66893e-06, 0)
+scale = Vector2(1.25, 0.5)
+texture = ExtResource("3_w8knu")
+
+[node name="AttackTimer" type="Timer" parent="." index="1"]
+unique_name_in_owner = true
+wait_time = 2.0
+one_shot = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_yhlm5")
+
+[node name="Control" parent="." index="3"]
+offset_top = -14.0
+offset_bottom = -14.0
+
+[node name="HpBar" parent="Control" index="0"]
+offset_left = -37.0
+offset_top = -4.0
+offset_right = 37.0
+offset_bottom = 4.0
+pivot_offset = Vector2(10, 0)

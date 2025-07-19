@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cqeipy34fsrus"]
+
+[ext_resource type="Script" uid="uid://dxicvoiigwd6v" path="res://ui/upgrade_card_collection/upgrade_card_collection.gd" id="1_b5jwm"]
+
+[node name="UpgradeCardCollection" type="HBoxContainer"]
+process_mode = 3
+offset_right = 252.0
+offset_bottom = 146.0
+script = ExtResource("1_b5jwm")

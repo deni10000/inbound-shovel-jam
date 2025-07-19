@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="HpUpgrade" load_steps=4 format=3 uid="uid://jiykpj8ec5dr"]
+
+[ext_resource type="Script" uid="uid://dgn1g5vopt3hf" path="res://upgrade/hp_upgrade.gd" id="1_ruw0x"]
+[ext_resource type="Texture2D" uid="uid://bcpf5fsrwsfnk" path="res://images/Icons_RPG.png" id="2_shjc4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3gkjy"]
+atlas = ExtResource("2_shjc4")
+region = Rect2(48, 80, 16, 16)
+
+[resource]
+script = ExtResource("1_ruw0x")
+hp = 1
+texture = SubResource("AtlasTexture_3gkjy")
+description = "+ max health"
+metadata/_custom_type_script = "uid://dgn1g5vopt3hf"

@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://bjxnf8xnxjbfj"]
+
+[ext_resource type="Script" uid="uid://b4v7hb3rm16e5" path="res://projectile/projectile.gd" id="1_6aa83"]
+[ext_resource type="Shader" uid="uid://8pveux7xk8sx" path="res://projectile/projectile.gdshader" id="1_dr2av"]
+[ext_resource type="Texture2D" uid="uid://dngxgvex0e0mw" path="res://images/projectile.png" id="2_makwg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dr2av"]
+radius = 6.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dr2av"]
+resource_local_to_scene = true
+shader = ExtResource("1_dr2av")
+shader_parameter/swap_channels = false
+
+[node name="Projectile" type="Area2D"]
+collision_mask = 15
+monitorable = false
+script = ExtResource("1_6aa83")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
+shape = SubResource("CircleShape2D_dr2av")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_dr2av")
+texture = ExtResource("2_makwg")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

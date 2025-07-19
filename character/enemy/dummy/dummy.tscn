@@ -1,0 +1,67 @@
+[gd_scene load_steps=9 format=3 uid="uid://dvqshrtobah3f"]
+
+[ext_resource type="PackedScene" uid="uid://rypvc2885l3d" path="res://character/enemy/enemy.tscn" id="1_ee725"]
+[ext_resource type="Script" uid="uid://cqhsn20uua1iu" path="res://character/enemy/dummy/dummy.gd" id="2_lww5i"]
+[ext_resource type="Texture2D" uid="uid://57tqndsuiyk1" path="res://images/dummy_spritesheet.png" id="3_ubxul"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_15lna"]
+atlas = ExtResource("3_ubxul")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k2a4j"]
+atlas = ExtResource("3_ubxul")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e8o01"]
+atlas = ExtResource("3_ubxul")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_a8irv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_15lna")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k2a4j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e8o01")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_15lna")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ubxul"]
+radius = 5.0
+height = 12.0
+
+[node name="Dummy" instance=ExtResource("1_ee725")]
+script = ExtResource("2_lww5i")
+push_speed = 400
+default_hp = 4
+
+[node name="Control" parent="." index="0"]
+offset_top = -23.0
+offset_bottom = -23.0
+
+[node name="HpBar" parent="Control" index="0"]
+offset_left = -10.0
+offset_right = 10.0
+visible_on_full_hp = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="1"]
+unique_name_in_owner = true
+position = Vector2(0, -1)
+sprite_frames = SubResource("SpriteFrames_a8irv")
+frame = 3
+frame_progress = 1.0
+offset = Vector2(0, -6)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
+position = Vector2(-0.5, -2)
+shape = SubResource("CapsuleShape2D_ubxul")

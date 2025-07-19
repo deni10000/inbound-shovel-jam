@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://c84ak8mlgoeis"]
+
+[ext_resource type="Script" uid="uid://b3ryrgndduqnt" path="res://component/parry_component/parry_component.gd" id="1_815b6"]
+
+[node name="ParryComponent" type="Area2D"]
+collision_layer = 3
+script = ExtResource("1_815b6")
