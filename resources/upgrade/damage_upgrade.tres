@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="DamageUpgrade" load_steps=4 format=3 uid="uid://bhfkea7w1wf0h"]
+
+[ext_resource type="Script" uid="uid://ckqlj14ou0br4" path="res://upgrade/damage_upgrade.gd" id="1_fsymh"]
+[ext_resource type="Texture2D" uid="uid://bcpf5fsrwsfnk" path="res://images/Icons_RPG.png" id="2_4iqbk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1bqkt"]
+atlas = ExtResource("2_4iqbk")
+region = Rect2(0, 0, 16, 16)
+
+[resource]
+script = ExtResource("1_fsymh")
+add_damage = 1
+texture = SubResource("AtlasTexture_1bqkt")
+description = "+ attack damage"
+metadata/_custom_type_script = "uid://ckqlj14ou0br4"

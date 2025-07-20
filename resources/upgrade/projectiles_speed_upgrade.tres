@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ProjectilesSpeedUpgrade" load_steps=4 format=3 uid="uid://c3qtqx5crvvi4"]
+
+[ext_resource type="Script" uid="uid://bohhaq23e0al8" path="res://upgrade/projectiles_speed_upgrade.gd" id="1_tsbuw"]
+[ext_resource type="Texture2D" uid="uid://bcpf5fsrwsfnk" path="res://images/Icons_RPG.png" id="2_p03bf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w0fs8"]
+atlas = ExtResource("2_p03bf")
+region = Rect2(80, 208, 16, 16)
+
+[resource]
+script = ExtResource("1_tsbuw")
+speed = 100
+texture = SubResource("AtlasTexture_w0fs8")
+description = "+ to the speed of reflected projectiles"
+metadata/_custom_type_script = "uid://bohhaq23e0al8"

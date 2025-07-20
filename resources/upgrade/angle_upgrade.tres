@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="AngleUpgrade" load_steps=4 format=3 uid="uid://dg2lcko41qt6t"]
+
+[ext_resource type="Script" uid="uid://b7wq4nkka3jkr" path="res://upgrade/angle_upgrade.gd" id="1_oeckt"]
+[ext_resource type="Texture2D" uid="uid://bcpf5fsrwsfnk" path="res://images/Icons_RPG.png" id="2_pv3ci"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_agn7f"]
+atlas = ExtResource("2_pv3ci")
+region = Rect2(80, 144, 16, 16)
+
+[resource]
+script = ExtResource("1_oeckt")
+add_angle = 15.0
+texture = SubResource("AtlasTexture_agn7f")
+description = "+ sword attack angle"
+metadata/_custom_type_script = "uid://b7wq4nkka3jkr"
