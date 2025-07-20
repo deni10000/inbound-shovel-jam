@@ -9,7 +9,7 @@ region = Rect2(192, 80, 16, 16)
 
 [resource]
 script = ExtResource("1_qb501")
-add_velocity = 100
+add_velocity = 150
 texture = SubResource("AtlasTexture_gkkv0")
 description = "+ dash distance"
 metadata/_custom_type_script = "uid://lxb31vka87x1"

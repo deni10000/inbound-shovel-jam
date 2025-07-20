@@ -70,7 +70,8 @@ func load_resources(path: String) -> Array:
 
 	for file_name in dir.get_files():
 		var full_path = path.path_join(file_name)
-		var res = ResourceLoader.load(full_path)
+		full_path = full_path.trim_suffix('.remap')
+		var res = load(full_path)
 		if res:
 			result.append(res)
 
