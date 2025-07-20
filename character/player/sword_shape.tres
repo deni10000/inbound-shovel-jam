@@ -1,5 +1,5 @@
 [gd_resource type="CapsuleShape2D" format=3 uid="uid://cruhec725kmhx"]
 
 [resource]
-radius = 2.5
-height = 28.0
+radius = 5.0
+height = 33.0

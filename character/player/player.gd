@@ -1,8 +1,7 @@
 extends Character
 class_name Player
 
-var invulnerability_time: float = 0.5
-var invulnerability: bool = false
+var invulnerability_time: float = 0.6
 var attack_angle: float = deg_to_rad(50)
 var attack_dration: float = 0.3
 var damage: int = 1
@@ -38,7 +37,7 @@ func _ready() -> void:
 	super()
 	attack_area.body_entered.connect(handle_attack_collisions)
 	var dop = SwordUpgrade.new()
-	dop.dop = 15
+	dop.dop = 25
 	dop.apply_upgrade(self)
 	#var dop = 50
 	#shape.height += dop
@@ -48,7 +47,6 @@ func _ready() -> void:
 	#$AttackArea/NinePatchRect.position.y = $AttackArea/CollisionShape2D.position.y + shape.height / 2 - $AttackArea/NinePatchRect.size.y + 6
 
 func set_hp(hp):
-	AudioStreamRandomizer
 	super.set_hp(hp)
 	if hp <= 0:
 		await die_animation()
@@ -153,6 +151,7 @@ func apply_damage(damage: int):
 	if invulnerability:
 		return
 	set_hp(hp - damage)
+	danage_sound.play()
 	invulnerability = true
 	await get_tree().create_timer(invulnerability_time).timeout
 	invulnerability = false

@@ -7,6 +7,8 @@ var lock_move = false
 @onready var hp: int = default_hp 
 @onready var hp_bar = %HpBar
 @onready var danage_sound = $DamageSound
+
+var invulnerability: bool = false
 var projectiles: Node2D
 
 func die_animation():
@@ -51,6 +53,8 @@ func get_view_direction():
 	return (get_global_mouse_position() - global_position).normalized()
 
 func push(direction: Vector2, push_speed: float, push_duration: float):
+	if lock_move or invulnerability:
+		return
 	direction = direction.normalized()
 	lock_move = true
 	var tween = self.create_tween()

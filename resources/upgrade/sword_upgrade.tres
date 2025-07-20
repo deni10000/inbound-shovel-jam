@@ -9,7 +9,7 @@ region = Rect2(0, 0, 16, 16)
 
 [resource]
 script = ExtResource("1_yxenj")
-dop = 10
+dop = 15
 texture = SubResource("AtlasTexture_dsio8")
 description = "+ sword length"
 metadata/_custom_type_script = "uid://c0eveyixcmdbt"

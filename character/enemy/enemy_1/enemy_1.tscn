@@ -1,10 +1,11 @@
-[gd_scene load_steps=45 format=3 uid="uid://dltxa7euiq46q"]
+[gd_scene load_steps=55 format=3 uid="uid://dltxa7euiq46q"]
 
 [ext_resource type="PackedScene" uid="uid://rypvc2885l3d" path="res://character/enemy/enemy.tscn" id="1_tmha5"]
 [ext_resource type="Script" uid="uid://b0grr2sqsqfag" path="res://character/enemy/enemy_1/enemy_1.gd" id="2_cwm7i"]
 [ext_resource type="Texture2D" uid="uid://csb74yhr1oik3" path="res://images/player.png" id="3_8bp40"]
 [ext_resource type="Texture2D" uid="uid://c7g46m7khg4h5" path="res://character/enemy/enemy_1/skeletonOnlyWalk.png" id="4_8dwp7"]
 [ext_resource type="Texture2D" uid="uid://cy8653j11y3kq" path="res://character/enemy/enemy_1/LightskeletonAxe.png" id="5_50ikg"]
+[ext_resource type="Texture2D" uid="uid://ql5yx0ed2lmc" path="res://images/skeletonBlueAxeMedium.png" id="6_50ikg"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cwm7i"]
 radius = 9.0
@@ -158,6 +159,42 @@ region = Rect2(483, 0, 69, 45)
 atlas = ExtResource("5_50ikg")
 region = Rect2(552, 0, 69, 45)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_wlgip"]
+atlas = ExtResource("6_50ikg")
+region = Rect2(0, 0, 65, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1fqdr"]
+atlas = ExtResource("6_50ikg")
+region = Rect2(65, 0, 65, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w11h6"]
+atlas = ExtResource("6_50ikg")
+region = Rect2(130, 0, 65, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_su6bb"]
+atlas = ExtResource("6_50ikg")
+region = Rect2(195, 0, 65, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v34a7"]
+atlas = ExtResource("6_50ikg")
+region = Rect2(260, 0, 65, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mp0ed"]
+atlas = ExtResource("6_50ikg")
+region = Rect2(325, 0, 65, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1fgk4"]
+atlas = ExtResource("6_50ikg")
+region = Rect2(390, 0, 65, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rppbo"]
+atlas = ExtResource("6_50ikg")
+region = Rect2(455, 0, 65, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_djiii"]
+atlas = ExtResource("6_50ikg")
+region = Rect2(520, 0, 65, 39)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_wlgip"]
 animations = [{
 "frames": [{
@@ -290,11 +327,44 @@ animations = [{
 "loop": true,
 "name": &"move_1",
 "speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wlgip")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1fqdr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w11h6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_su6bb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v34a7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mp0ed")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1fgk4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rppbo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_djiii")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 12.0
 }]
 
 [node name="Enemy1" instance=ExtResource("1_tmha5")]
 script = ExtResource("2_cwm7i")
 default_hp = 1
+default_velocity = 150.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." index="0"]
 visible = false
@@ -312,6 +382,7 @@ offset_bottom = -31.0
 unique_name_in_owner = true
 position = Vector2(1, -14)
 sprite_frames = SubResource("SpriteFrames_wlgip")
-animation = &"move"
-autoplay = "move"
+animation = &"new_animation"
+autoplay = "new_animation"
+frame_progress = 0.870614
 offset = Vector2(4, 0)

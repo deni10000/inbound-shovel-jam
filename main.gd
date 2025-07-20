@@ -16,7 +16,7 @@ var version = 0
 
 #enemy count point timer
 var levels = [
-	[[2, 4, 0, 0]],
+	#[[2, 4, 0, 0]],
 
 	[[1, 30, 0, 2],
 	[1, 30, 1, 3],
@@ -30,8 +30,15 @@ var levels = [
 	[2, 1, 0, 0],
 	[2, 1, 1, 0],
 	[2, 1, 2, 0],
-	[2, 1, 3, 5],
-	[1, 100, 0, 0]]
+	[2, 1, 3, 2],
+	[2, 1, 0, 0],
+	[2, 1, 1, 0],
+	[2, 1, 2, 0],
+	[2, 1, 3, 2],
+	[1, 30, 0, 0],
+	[1, 30, 1, 0],
+	[1, 30, 2, 0],
+	[1, 30, 3, 7]]
 ]
 
 var hp_upgrade = preload("uid://jiykpj8ec5dr")
@@ -99,6 +106,9 @@ func choose_upgrade():
 	upgrade_card_collection.visible = false
 
 func on_level_finished():
+	if current_level == len(levels) - 1:
+		%Label.visible = true
+		return
 	await  choose_upgrade()
 	current_level += 1
 	start_level(levels[current_level])
@@ -143,6 +153,7 @@ func end_tutorial():
 	
 
 func _ready() -> void:
+	print($Path2D2.curve.get_baked_length())
 	enemies.child_exiting_tree.connect(on_enemy_exit)
 	player.refresh_player(start_pos)
 	#while true:

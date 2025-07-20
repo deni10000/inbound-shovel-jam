@@ -5,11 +5,11 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_agn7f"]
 atlas = ExtResource("2_pv3ci")
-region = Rect2(80, 144, 16, 16)
+region = Rect2(32, 128, 16, 16)
 
 [resource]
 script = ExtResource("1_oeckt")
-add_angle = 15.0
+add_angle = 0.262
 texture = SubResource("AtlasTexture_agn7f")
 description = "+ sword attack angle"
 metadata/_custom_type_script = "uid://b7wq4nkka3jkr"

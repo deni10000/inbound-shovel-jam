@@ -1,9 +1,53 @@
-[gd_scene load_steps=5 format=3 uid="uid://byy1jsnq5s7g"]
+[gd_scene load_steps=12 format=3 uid="uid://byy1jsnq5s7g"]
 
 [ext_resource type="PackedScene" uid="uid://rypvc2885l3d" path="res://character/enemy/enemy.tscn" id="1_bqxk3"]
 [ext_resource type="Script" uid="uid://qtjc3h8e0qln" path="res://character/enemy/enemy_2/enemy_2.gd" id="2_yhlm5"]
 [ext_resource type="Texture2D" uid="uid://csb74yhr1oik3" path="res://images/player.png" id="3_w8knu"]
 [ext_resource type="Shape2D" uid="uid://b8p5pdjuutd60" path="res://character/enemy/enemy_2/new_capsule_shape_2d.tres" id="4_nwc2m"]
+[ext_resource type="Texture2D" uid="uid://b8yvdhg5jbbu1" path="res://images/Spider.png" id="5_1nx7o"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xe6fu"]
+atlas = ExtResource("5_1nx7o")
+region = Rect2(0, 0, 30, 29)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dwxaj"]
+atlas = ExtResource("5_1nx7o")
+region = Rect2(30, 0, 30, 29)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dusop"]
+atlas = ExtResource("5_1nx7o")
+region = Rect2(60, 0, 30, 29)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_muyj8"]
+atlas = ExtResource("5_1nx7o")
+region = Rect2(90, 0, 30, 29)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o4wqb"]
+atlas = ExtResource("5_1nx7o")
+region = Rect2(120, 0, 30, 29)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6df5u"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xe6fu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dwxaj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dusop")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_muyj8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o4wqb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
 
 [node name="Enemy2" instance=ExtResource("1_bqxk3")]
 y_sort_enabled = false
@@ -13,6 +57,7 @@ repelled = false
 default_velocity = 50.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." index="0"]
+visible = false
 position = Vector2(1.66893e-06, 0)
 scale = Vector2(1.25, 0.5)
 texture = ExtResource("3_w8knu")
@@ -46,5 +91,10 @@ collision_mask = 8
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
 rotation = 1.5708
 shape = ExtResource("4_nwc2m")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="6"]
+sprite_frames = SubResource("SpriteFrames_6df5u")
+autoplay = "default"
+frame_progress = 0.723922
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

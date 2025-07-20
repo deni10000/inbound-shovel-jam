@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://c87vx57hldk1p"]
+[gd_scene load_steps=4 format=3 uid="uid://c87vx57hldk1p"]
 
 [ext_resource type="Script" uid="uid://8q2rdaep30fh" path="res://ui/upgrade_card/upgrade_card.gd" id="1_q767i"]
 [ext_resource type="Texture2D" uid="uid://d2j0h3eukfbg" path="res://images/Heart.png" id="2_r1qoy"]
+[ext_resource type="AudioStream" uid="uid://3q843glin52j" path="res://sfx/knopka-klik-odinochnyii-myagkii-priglushennyii-korotkii.wav" id="3_ortmt"]
 
 [node name="UpgradeCard" type="PanelContainer"]
 custom_minimum_size = Vector2(130, 0)
@@ -29,6 +30,12 @@ size_flags_vertical = 8
 text = "agaggag"
 horizontal_alignment = 1
 autowrap_mode = 3
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+process_mode = 3
+stream = ExtResource("3_ortmt")
+bus = &"SFX"
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
