@@ -18,6 +18,7 @@ func set_hp(hp: int):
 		queue_free()
 	
 func apply_damage(damage: int):
+	danage_sound.play()
 	set_hp(hp - damage)
 
 func shoot(type = 1):

@@ -4,6 +4,15 @@ class_name UpgradeCard
 @onready var upgrade: Upgrade:
 	set(val):
 		upgrade = val
+		var mod = Color.WHITE
+		match upgrade.level:
+			0:
+				mod = Color("b0c3d9")
+			1:
+				mod = Color("8847ff")
+			2: 
+				mod = Color("fff34f")
+		self_modulate = mod
 		%Label.text = upgrade.description
 		%TextureRect.texture = upgrade.texture
 		centered()

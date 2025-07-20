@@ -6,6 +6,7 @@ var lock_move = false
 @export var default_velocity: float
 @onready var hp: int = default_hp 
 @onready var hp_bar = %HpBar
+@onready var danage_sound = $DamageSound
 var projectiles: Node2D
 
 func die_animation():
@@ -47,13 +48,14 @@ func _physics_process(delta: float) -> void:
 		handle_collision()
 
 func get_view_direction():
-	return get_global_mouse_position() - global_position
+	return (get_global_mouse_position() - global_position).normalized()
 
 func push(direction: Vector2, push_speed: float, push_duration: float):
 	direction = direction.normalized()
 	lock_move = true
 	var tween = self.create_tween()
 	tween.tween_property(self, "velocity", Vector2.ZERO, push_duration).from(push_speed * direction)
+	tween.set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
 	await tween.finished
 	lock_move = false
 	

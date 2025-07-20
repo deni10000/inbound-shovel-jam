@@ -14,11 +14,16 @@ extends HBoxContainer
 @export var empty_heart: Texture2D
 @export var visible_on_full_hp = false
 
+
+	
+
 func add_texture_rect(texture):
-		var texture_rect = TextureRect.new()
-		texture_rect.texture = texture
-		add_child(texture_rect)
-		texture_rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	get_global_transform()
+	
+	var texture_rect = TextureRect.new()
+	texture_rect.texture = texture
+	add_child(texture_rect)
+	texture_rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 
 func update(hp, max_hp = hp):
 	if hp == max_hp and not visible_on_full_hp:
@@ -37,6 +42,3 @@ func update(hp, max_hp = hp):
 			add_texture_rect(heart)
 	
 	pivot_offset = size / 2
-	
-	
-	

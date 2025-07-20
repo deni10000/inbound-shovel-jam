@@ -6,8 +6,9 @@ var invulnerability: bool = false
 var attack_angle: float = deg_to_rad(50)
 var attack_dration: float = 0.3
 var damage: int = 1
-var slow_factor: float = 0.75
+var slow_factor: float = 0.70
 var attacked_enemies: Array[Enemy]
+var reflection_upgrade: bool = true
 
 var dash_speed: float = 400
 var dash_duration: float = 0.2
@@ -27,6 +28,9 @@ var shape = preload("uid://cruhec725kmhx")
 @onready var attack_shape = %CollisionShape2D
 @onready var parry_shape = %CollisionShape2D2
 @onready var collision_shape = $CollisionShape2D
+@onready var attack_sound = %AttackSound
+@onready var parry_sound = %ParrySound
+@onready var additional_projectiles_speed: int = 0
 
 
 
@@ -44,6 +48,7 @@ func _ready() -> void:
 	#$AttackArea/NinePatchRect.position.y = $AttackArea/CollisionShape2D.position.y + shape.height / 2 - $AttackArea/NinePatchRect.size.y + 6
 
 func set_hp(hp):
+	AudioStreamRandomizer
 	super.set_hp(hp)
 	if hp <= 0:
 		await die_animation()
@@ -52,7 +57,65 @@ func set_hp(hp):
 var direction_vector: Vector2 = Vector2.ZERO
 
 var want_to_dash = false		
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
+func right(action = "run"):
+	sprite.scale.x = 1
+	sprite.play(action + "_right")
+	
+func right_up(action = "run"):
+	sprite.scale.x = 1
+	sprite.play(action + "_right_up")
+	
+func up(action = "run"):
+	sprite.play(action + "_up")
+	
+func left_up(action = "run"):
+	sprite.scale.x = -1
+	sprite.play(action + "_right_up")
+	
+func left(action = "run"):
+	sprite.scale.x = -1
+	sprite.play(action + "_right")
+	
+func left_down(action = "run"):
+	sprite.scale.x = -1
+	sprite.play(action + "_right_down")
+	
+func down(action = "run"):
+	sprite.play(action + "_down")
+	
+func right_down(action = "run"):
+	sprite.scale.x = 1
+	sprite.play(action + "_right_down")	
+
+func play_direction_animation(direction: Vector2, action: String):
+	last_dir = direction
+	direction.y *= -1
+	var angle = direction.angle()
+	var angle_deg = rad_to_deg(angle)
+	
+	if angle_deg < 0:
+		angle_deg += 360
+	
+	if angle_deg >= 337.5 or angle_deg < 22.5:
+		right(action)
+	elif angle_deg >= 22.5 and angle_deg < 67.5:
+		right_up(action)
+	elif angle_deg >= 67.5 and angle_deg < 112.5:
+		up(action)
+	elif angle_deg >= 112.5 and angle_deg < 157.5:
+		left_up(action)
+	elif angle_deg >= 157.5 and angle_deg < 202.5:
+		left(action)
+	elif angle_deg >= 202.5 and angle_deg < 247.5:
+		left_down(action)
+	elif angle_deg >= 247.5 and angle_deg < 292.5:
+		down(action)
+	elif angle_deg >= 292.5 and angle_deg < 337.5:
+		right_down(action)
+
+var last_dir = Vector2.UP
 func _physics_process(delta: float) -> void:
 	super(delta)
 	parry_area.rotation = get_view_direction().angle() + PI/2
@@ -68,6 +131,18 @@ func _physics_process(delta: float) -> void:
 	if direction_vector != Vector2.ZERO and want_to_dash:
 		dash()
 		want_to_dash = false
+	
+	var action = "run"
+	if direction_vector == Vector2.ZERO:
+		action = "idle"
+	if state == State.PARRY or state == State.ATTACK:
+		var mouse_direction = get_view_direction()
+		play_direction_animation(mouse_direction, action)
+	else:
+		if action == "idle":
+			play_direction_animation(last_dir, action)
+		else:
+			play_direction_animation(direction_vector, action)
 
 func apply_velocity(delta: float):
 	self.velocity = default_velocity * direction_vector
@@ -87,6 +162,7 @@ func refresh_player(start_pos):
 	rotation = 0
 	modulate = Color.WHITE
 	process_mode = Node.PROCESS_MODE_INHERIT
+	parry_area.end_parry()
 	reset_physics_interpolation()
 	set_hp(default_hp)
 
@@ -104,6 +180,7 @@ func handle_attack_collisions(body):
 func attack():
 	if state != State.WALK:
 		return
+	attack_sound.play()
 	attack_area.visible = true
 	attacked_enemies.clear()
 	state = State.ATTACK
@@ -119,7 +196,6 @@ func attack():
 	if parry_area.parry_promise:
 		parry_area.start_parry()
 
-@onready var sprite = %Sprite2D
 func spawn_ghost():
 	var ghost := sprite.duplicate()
 	#ghost.texture = sprite.texturea
@@ -136,7 +212,7 @@ func spawn_ghost():
 	await get_tree().create_timer(0.3, false, true).timeout
 	ghost.queue_free()
 
-var interval: float = 0.05
+var interval: float = 0.03
 func spawn_ghosts(time: float):
 	while time >= interval:
 		time -= interval

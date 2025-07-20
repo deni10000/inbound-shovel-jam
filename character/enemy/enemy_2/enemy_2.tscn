@@ -27,8 +27,9 @@ rotation = 1.5708
 shape = ExtResource("4_nwc2m")
 
 [node name="Control" parent="." index="3"]
-offset_top = -14.0
-offset_bottom = -14.0
+unique_name_in_owner = true
+offset_top = -16.0
+offset_bottom = -16.0
 
 [node name="HpBar" parent="Control" index="0"]
 offset_left = -37.0

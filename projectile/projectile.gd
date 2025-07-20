@@ -48,7 +48,12 @@ func _on_area_entered(area: Area2D) -> void:
 			return
 		var normal = (points[1] - points[0]).normalized()
 		is_enemy = not is_enemy
-		direction = direction - 2.0 * direction.dot(normal) * normal
+		velocity += area.player.additional_projectiles_speed
+		if area.player.reflection_upgrade:	
+			direction = area.player.get_view_direction()
+		else:
+			direction = direction - 2.0 * direction.dot(normal) * normal
+		area.parry_sound.play()
 
 		#var normal = ray.get_collision_normal()
 		#if normal == Vector2.ZERO:

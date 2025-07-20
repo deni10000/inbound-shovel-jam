@@ -35,9 +35,18 @@ func apply_velocity(delta: float):
 		var dir = get_next_point_direction(offset, step) 
 		if  get_next_point_direction(offset + dir * step, step) == dir:
 			offset += dir * step
-			#$Sprite2D.rotation = curve.sample_baked_with_rotation(offset).get_rotation()
+			$Sprite2D.rotation = curve.sample_baked_with_rotation(offset).get_rotation()
+			var rotation = (target.global_position - global_position).angle() - PI / 2
+			$Sprite2D.rotation = rotation
+			$CollisionShape2D.rotation = rotation + PI / 2
+			%Area2D.rotation = rotation
+			#var transform: Transform2D = hp_bar.get_global_transform()
+			#rotation = (target.global_position - global_position).angle() - PI / 2
+			#var transform2 = hp_bar.get_global_transform()
+			#hp_bar.position  -= transform2.origin - transform.origin
+			#hp_bar.rotation -= transform2.get_rotation() - transform.get_rotation()
 			
-			$Sprite2D.rotation = (target.global_position - global_position).angle() + PI / 2
+
 			
 			next_point = get_point(offset)
 			

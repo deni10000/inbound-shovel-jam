@@ -8,4 +8,3 @@ void fragment() {
         COLOR = vec4(color.b, color.g, color.r, color.a);
     }
 }
-

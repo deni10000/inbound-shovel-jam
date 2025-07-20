@@ -4,6 +4,7 @@ class_name Parry
 @onready var player: Player = get_parent()
 @export var collision_shape: CollisionShape2D
 var parry_promise: bool = false
+@onready var parry_sound = %ParrySound
 
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("parry"):

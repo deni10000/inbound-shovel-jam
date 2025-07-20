@@ -1,7 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://dsv5mtfajcwb0"]
+[gd_scene load_steps=5 format=3 uid="uid://dsv5mtfajcwb0"]
 
 [ext_resource type="Script" uid="uid://0jj0nd3dyell" path="res://character/character.gd" id="1_k3002"]
 [ext_resource type="PackedScene" uid="uid://bkox6trr4oj8i" path="res://ui/hp_bar/hp_bar.tscn" id="2_1l1n4"]
+[ext_resource type="AudioStream" uid="uid://df1ua702lwt24" path="res://sfx/click.wav" id="3_ugqs2"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_hx151"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("3_ugqs2")
 
 [node name="Character" type="CharacterBody2D"]
 y_sort_enabled = true
@@ -22,3 +28,10 @@ offset_left = 0.0
 offset_top = 0.0
 offset_right = 20.0
 offset_bottom = 0.0
+
+[node name="DamageSound" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = SubResource("AudioStreamRandomizer_hx151")
+pitch_scale = 0.4
+bus = &"SFX"
+playback_type = 2

@@ -25,3 +25,5 @@ editor_max_hp = 6
 heart = ExtResource("2_lsnvh")
 empty_heart = ExtResource("3_uvt3w")
 visible_on_full_hp = null
+
+[connection signal="item_rect_changed" from="." to="." method="_on_item_rect_changed"]

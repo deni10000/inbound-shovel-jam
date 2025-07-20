@@ -62,14 +62,38 @@ func launch_wave(wave: Array, is_last = false):
 
 @onready var upgrade_card_collection: UpgradeCardCollection = %UpgradeCardCollection
 
+func load_resources(path: String) -> Array:
+	var result = []
+	var dir = DirAccess.open(path)
+	if dir == null:
+		return result
 
+	for file_name in dir.get_files():
+		var full_path = path.path_join(file_name)
+		var res = ResourceLoader.load(full_path)
+		if res:
+			result.append(res)
+
+	return result
+
+
+
+var all_upgrades = load_resources("res://resources//upgrade")
 func choose_upgrade():
-	upgrade_card_collection.upgrades = upgrades[current_level]
+	#upgrade_card_collection.upgrades = upgrades[current_level]
+	all_upgrades.shuffle()
+	upgrade_card_collection.upgrades = all_upgrades.slice(0, 3)
+	
+	
 	upgrade_card_collection.update()
 	upgrade_card_collection.visible = true
 	get_tree().paused = true
 	var upgrade: Upgrade = await upgrade_card_collection.upgrade_choosen
+	upgrade.level += 1
 	upgrade.apply_upgrade(player)
+	if upgrade.level == 3:
+		all_upgrades.erase(upgrade)
+	
 	get_tree().paused = false
 	upgrade_card_collection.visible = false
 
@@ -120,3 +144,5 @@ func end_tutorial():
 func _ready() -> void:
 	enemies.child_exiting_tree.connect(on_enemy_exit)
 	player.refresh_player(start_pos)
+	#while true:
+		#await choose_upgrade()
