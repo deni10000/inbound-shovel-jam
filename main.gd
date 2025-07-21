@@ -16,17 +16,21 @@ var version = 0
 
 #enemy count point timer
 var levels = [
-	#[[2, 4, 0, 0]],
+	#[[2, 5, 0, 0]],
 
 	[[1, 30, 0, 2],
-	[1, 30, 1, 3],
-	[1, 40, 3, 4],
-	[1, 40, 2, 1]],
+	[1, 30, 1, 2],
+	[1, 30, 3, 2],
+	[1, 30, 2, 2], 
+	[1, 30, 0, 2],
+	[1, 30, 1, 2],
+	[1, 30, 3, 2],
+	[1, 30, 2, 0]],
 	
 	[[1, 30, 0, 0],
-	[1, 30, 1, 0],
+	[1, 25, 1, 0],
 	[1, 30, 2, 0],
-	[1, 30, 3, 7],
+	[1, 25, 3, 7],
 	[2, 1, 0, 0],
 	[2, 1, 1, 0],
 	[2, 1, 2, 0],
@@ -34,11 +38,29 @@ var levels = [
 	[2, 1, 0, 0],
 	[2, 1, 1, 0],
 	[2, 1, 2, 0],
-	[2, 1, 3, 2],
+	[2, 1, 3, 4],
 	[1, 30, 0, 0],
-	[1, 30, 1, 0],
+	[1, 25, 1, 0],
 	[1, 30, 2, 0],
-	[1, 30, 3, 7]]
+	[1, 25, 3, 7]], 
+	
+	[[3, 40, 0, 0],
+	[3, 40, 1, 0],
+	[3, 40, 2, 0],
+	[3, 40, 3, 4],
+	[2, 1, 0, 0],
+	[2, 1, 1, 0],
+	[2, 1, 2, 0],
+	[2, 1, 3, 2],
+	[2, 1, 0, 0],
+	[2, 1, 1, 0],
+	[2, 1, 2, 0],
+	[2, 1, 3, 2],
+	[2, 1, 0, 0],
+	[2, 1, 1, 0],
+	[2, 1, 2, 0],
+	[2, 1, 3, 2],
+	[3, 30, 0, 0]]
 ]
 
 var hp_upgrade = preload("uid://jiykpj8ec5dr")
@@ -65,7 +87,7 @@ func launch_wave(wave: Array, is_last = false):
 		enemies.call_deferred("add_child", enemy)
 		if i == wave[1] - 1 and is_last:
 			wave_ended = true
-		await get_tree().create_timer(time_between_enemies).timeout
+		await get_tree().create_timer(time_between_enemies if wave[0] != 3 else 0.03).timeout
 
 @onready var upgrade_card_collection: UpgradeCardCollection = %UpgradeCardCollection
 

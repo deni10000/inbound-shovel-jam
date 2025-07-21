@@ -54,6 +54,7 @@ y_sort_enabled = false
 collision_mask = 1
 script = ExtResource("2_yhlm5")
 repelled = false
+default_hp = 2
 default_velocity = 50.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." index="0"]

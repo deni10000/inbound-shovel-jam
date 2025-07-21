@@ -108,7 +108,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Button" type="Button" parent="CanvasLayer"]
-visible = false
 offset_right = 16.0
 offset_bottom = 12.0
 focus_mode = 0
@@ -165,6 +164,14 @@ tile_map_data = PackedByteArray("AAA7AA0ABAAcAAcAAAA7AA4ABAAcAAgAAAA7AA8ABAAcAAk
 tile_set = ExtResource("5_lquwl")
 
 [node name="TileMapLayer8" type="TileMapLayer" parent="TileMap"]
+tile_map_data = PackedByteArray("AAABAAAAAgALAAIAAAABAAEAAgALAAMAAAABAAIAAgALAAQAAAABAAMAAgALAAUAAAACAAAAAgAHAAYAAAAAAAAAAgAKAAIAAAAAAAEAAgAKAAMAAAAAAAIAAgAKAAQAAAAAAAMAAgAKAAUAAAACAAIAAgAHAAgAAAACAAMAAgAHAAkAAAACAP//AgAHAAUAAAACAP7/AgAJAAIAAAADAP7/AgAKAAIAAAADAP//AgAKAAMAAAADAAAAAgAKAAQAAAADAAEAAgAKAAUAAAACAAEAAgAGAAcAAAA=")
+enabled = false
+tile_set = ExtResource("5_lquwl")
+
+[node name="TileMapLayer9" type="TileMapLayer" parent="TileMap"]
+tile_map_data = PackedByteArray("AAACAP7/AgAKAAIAAAACAP//AgAKAAMAAAACAAAAAgAKAAQAAAACAAEAAgAKAAUAAAA=")
+enabled = false
+tile_set = ExtResource("5_lquwl")
 
 [node name="Tutorial" type="Node2D" parent="."]
 unique_name_in_owner = true

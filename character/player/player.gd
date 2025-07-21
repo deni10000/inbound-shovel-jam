@@ -11,10 +11,10 @@ var reflection_upgrade: bool = true
 
 var dash_speed: float = 400
 var dash_duration: float = 0.2
-var dash_cooldown: float = 0.3
+var dash_cooldown: float = 0.35
 var can_dash: bool = true
 
-enum State {WALK, ATTACK, PARRY, DASH}
+enum State {WALK, ATTACK, PARRY}
 
 var state = State.WALK
 
@@ -219,7 +219,7 @@ func spawn_ghosts(time: float):
 		await get_tree().create_timer(interval, false, true).timeout
 
 func dash():
-	if not can_dash or state != State.WALK:
+	if not can_dash:
 		return
 	
 	var dash_direction = direction_vector
@@ -227,7 +227,6 @@ func dash():
 		return
 	
 	can_dash = false
-	state = State.DASH
 	lock_move = true
 	set_collision_mask_value(4, false)
 	set_collision_layer_value(1, false)
@@ -239,10 +238,8 @@ func dash():
 	
 	await get_tree().create_timer(dash_duration, false, true).timeout
 	
-	state = State.WALK
 	velocity = Vector2.ZERO
 	
-	invulnerability = false
 	lock_move = false
 	
 	set_collision_mask_value(4, true)
@@ -251,7 +248,8 @@ func dash():
 	if parry_area.parry_promise:
 		parry_area.start_parry()
 
+	await  get_tree().create_timer(0.1, false, true).timeout
+	invulnerability = false
 	
-	
-	await get_tree().create_timer(dash_cooldown, false, true).timeout
+	await get_tree().create_timer(dash_cooldown - 0.1, false, true).timeout
 	can_dash = true

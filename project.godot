@@ -27,6 +27,10 @@ window/stretch/mode="viewport"
 movie_writer/mix_rate=8000
 movie_writer/mjpeg_quality=0.5
 
+[global_group]
+
+Enemy3=""
+
 [gui]
 
 theme/custom="uid://bnc174hdx3u6g"
