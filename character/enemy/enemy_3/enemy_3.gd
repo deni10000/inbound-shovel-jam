@@ -48,6 +48,11 @@ func apply_velocity(delta: float):
 	if not is_instance_valid(target):
 		velocity = Vector2.ZERO
 		return
+	if not Main.instance.in_polygon:
+		if zanyati_nomer is int:
+			points[zanyati_nomer] = true
+			next_point = Vector2.ZERO
+			zanyati_nomer = null
 	var dir 
 	if next_point == Vector2.ZERO:
 		default_velocity = 100
@@ -66,7 +71,7 @@ func apply_velocity(delta: float):
 			sprite.scale.x = -1
 		
 	else:
-		default_velocity = 200
+		default_velocity = 300
 		if global_position.x > 480:
 			sprite.scale.x = -1
 		

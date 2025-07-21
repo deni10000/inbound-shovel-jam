@@ -198,7 +198,7 @@ animations = [{
 collision_layer = 16
 collision_mask = 1
 script = ExtResource("2_mmyjt")
-push_speed = 300
+push_speed = 200
 
 [node name="Control" parent="." index="0"]
 offset_top = -40.0

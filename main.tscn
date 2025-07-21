@@ -67,16 +67,16 @@ unique_name_in_owner = true
 y_sort_enabled = true
 
 [node name="Point1" type="Node2D" parent="Spawners"]
-position = Vector2(480, 10)
+position = Vector2(480, 16)
 
 [node name="Point2" type="Node2D" parent="Spawners"]
-position = Vector2(9, 270)
+position = Vector2(16, 270)
 
 [node name="Point3" type="Node2D" parent="Spawners"]
-position = Vector2(480, 531)
+position = Vector2(480, 525)
 
 [node name="Point4" type="Node2D" parent="Spawners"]
-position = Vector2(951, 270)
+position = Vector2(945, 270)
 
 [node name="Enemies" type="Node2D" parent="."]
 unique_name_in_owner = true
@@ -226,6 +226,7 @@ text = "Start game!"
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 collision_layer = 5
+collision_mask = 25
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource("WorldBoundaryShape2D_272bh")
@@ -259,6 +260,10 @@ theme_override_font_sizes/font_size = 96
 text = "Thank you for 
 playing !"
 horizontal_alignment = 1
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(1, 1, 1, 0)
+polygon = PackedVector2Array(62, 272, 83, 212, 146, 153, 288, 94, 403, 68, 504, 61, 630, 85, 776, 124, 842, 168, 886, 205, 903, 254, 899, 309, 872, 366, 776, 427, 668, 465, 524, 479, 358, 470, 268, 450, 182, 417, 111, 372, 71, 329)
 
 [connection signal="pressed" from="CanvasLayer/Button" to="CanvasLayer/Button" method="_on_pressed"]
 [connection signal="pressed" from="Tutorial/CanvasLayer/VBoxContainer/Button" to="." method="end_tutorial"]

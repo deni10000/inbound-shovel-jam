@@ -21,7 +21,7 @@ var state = State.WALK
 
 @onready var attack_area: Area2D = %AttackArea
 @onready var parry_area: Parry = %ParryComponent
-var shape = preload("uid://cruhec725kmhx")
+var shape: Shape2D = preload("uid://cruhec725kmhx")
 @onready var attack_rect = %NinePatchRect
 @onready var parry_rect = %NinePatchRect2
 @onready var attack_shape = %CollisionShape2D
